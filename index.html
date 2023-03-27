@@ -1,0 +1,44 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="id=edge">
+    <script src="./chart.js"></script>
+    <title>Foreign exchange rate</title>
+</head>
+<body style="font-size: 10px;">
+
+<h4>Review historical currency rates</h4>
+<label for="start-date">Start Date:</label>
+<input type="date" id="start-date" name="start-date" style="font-size: 10px;">
+<label for="end-date">End Date:</label>
+<input type="date" id="end-date" name="end-date" style="font-size: 10px;">
+<br>
+<br>
+<label for="base-ccy">Ccy1:</label>
+<select id="base-ccy" name="base-ccy" style="font-size: 10px;">
+    <option value="CAD">CAD</option>
+    <option value="USD">USD</option>
+    <option value="GBP">GBP</option>
+    <option value="CNY">CNY</option>
+    <option value="HKD">HKD</option>
+    <option value="AUD">AUD</option>
+</select>
+<button id="swap-button" style="font-size: 10px;"><=></button>
+<label for="symbols-list">Ccy2:</label>
+<select id="symbols-list" name="symbols-list" style="font-size: 10px;">
+    <option value="HKD">HKD</option>
+    <option value="CAD">CAD</option>
+    <option value="USD">USD</option>
+    <option value="GBP">GBP</option>
+    <option value="CNY">CNY</option>
+    <option value="AUD">AUD</option>
+</select>
+<button id="viewChart-button" style="font-size: 10px;">View Chart</button>
+<br>
+<br>
+<div id="loading" style="display:none;">Loading...</div>
+<div id="error-message" style="display: none; color: darkblue"></div>
+<canvas id="myChart"></canvas>
+<script src="./app.js"></script>
+</body>
+</html>
