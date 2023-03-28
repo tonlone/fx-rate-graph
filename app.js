@@ -98,30 +98,30 @@ viewChartButton.addEventListener('click', () => {
 
             const options = {
                 responsive: true,
-                title: {
-                    display: true,
-                    text: 'CAD Exchange Rates',
-                    fontSize: 8
-                },
-                scales: {
-                    xAxes: [{
-                        type: 'time',
-                        time: {
-                            format: 'YYYY-MM-DD',
-                            tooltipFormat: 'll'
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Date'
-                        }
-                    }],
-                    yAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Exchange Rate'
-                        }
-                    }]
-                }
+                // title: {
+                //     display: true,
+                //     text: 'CAD Exchange Rates',
+                //     fontSize: 8
+                // },
+                // scales: {
+                //     xAxes: [{
+                //         type: 'time',
+                //         time: {
+                //             format: 'YYYY-MM-DD',
+                //             tooltipFormat: 'll'
+                //         },
+                //         scaleLabel: {
+                //             display: true,
+                //             labelString: 'Date'
+                //         }
+                //     }],
+                //     yAxes: [{
+                //         scaleLabel: {
+                //             display: true,
+                //             labelString: 'Exchange Rate'
+                //         }
+                //     }]
+                // }
             }
             chart = new Chart(ctx, {
                 type: 'line',
