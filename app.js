@@ -113,11 +113,23 @@ viewChartButton.addEventListener('click', () => {
                 },
                 scales: {
                     x: {
-                        ticks:{
+                        title:{
+                            display: false,
+                            text: 'Date',
                             color: 'black'
+                        },
+                        ticks:{
+                            //color: 'black',
+                            autoSkip: true,
+                            maxTicksLimit: 10
                         }
                     },
                     y: {
+                        title:{
+                            display: false,
+                            text: 'Exchange rate',
+                            color: 'black'
+                        },
                         ticks:{
                             color: 'black'
                         }
