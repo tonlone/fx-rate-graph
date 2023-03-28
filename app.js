@@ -90,39 +90,42 @@ viewChartButton.addEventListener('click', () => {
                     {
                         label: `${baseCcy} to ${symbolsList}`,
                         data: [],
+                        // point
+                        pointBackgroundColor: 'blue',
+                        pointHoverBackgroundColor: 'yellow',
+                        // line
+                        backgroundColor: 'green',
                         borderColor: 'green',
-                        fill: false
+                        // area under the line
+                        fill: false,
                     }
                 ]
             };
 
             const options = {
-                responsive: true,
-                // title: {
-                //     display: true,
-                //     text: 'CAD Exchange Rates',
-                //     fontSize: 8
-                // },
-                // scales: {
-                //     xAxes: [{
-                //         type: 'time',
-                //         time: {
-                //             format: 'YYYY-MM-DD',
-                //             tooltipFormat: 'll'
-                //         },
-                //         scaleLabel: {
-                //             display: true,
-                //             labelString: 'Date'
-                //         }
-                //     }],
-                //     yAxes: [{
-                //         scaleLabel: {
-                //             display: true,
-                //             labelString: 'Exchange Rate'
-                //         }
-                //     }]
-                // }
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: 'black'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks:{
+                            color: 'black'
+                        }
+                    },
+                    y: {
+                        ticks:{
+                            color: 'black'
+                        }
+                    }
+                }
             }
+
+
             chart = new Chart(ctx, {
                 type: 'line',
                 data: data,
@@ -159,6 +162,7 @@ viewChartButton.addEventListener('click', () => {
                     y: fxData.data[date][symbolsList]
                 });
             }
+
             chart.update(); // update the chart
             hideErrorMessage(); // hide the errorMessageElement
         })
