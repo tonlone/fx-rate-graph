@@ -91,11 +91,11 @@ viewChartButton.addEventListener('click', () => {
                         label: `${baseCcy} to ${symbolsList}`,
                         data: [],
                         // point
-                        pointBackgroundColor: 'blue',
-                        pointHoverBackgroundColor: 'yellow',
+                        pointBackgroundColor: 'green',
+                        pointHoverBackgroundColor: 'blue',
                         // line
-                        backgroundColor: 'green',
-                        borderColor: 'green',
+                        backgroundColor: '#5d8fcf',
+                        borderColor: '#5d8fcf',
                         // area under the line
                         fill: false,
                     }
@@ -156,9 +156,11 @@ viewChartButton.addEventListener('click', () => {
                 // console.log("fxData.data[date]:", fxData.data[date]);
                 // console.log("symbolsList:",symbolsList)
                 // console.log("fxData.data[date][symbolsList]:", fxData.data[date][symbolsList]);
-                data.labels.push(date.slice(-5)); // only push MM-DD into the labels and data, drop YYYY from the beginning
+                //data.labels.push(date.slice(-5)); // only push MM-DD into the labels and data, drop YYYY from the beginning
+                data.labels.push(formatDate(date));
                 data.datasets[0].data.push({
-                    x: date.slice(-5),
+                    //x: date.slice(-5),
+                    x: formatDate(date),
                     y: fxData.data[date][symbolsList]
                 });
             }
@@ -177,6 +179,19 @@ viewChartButton.addEventListener('click', () => {
             hideLoadingMessage();
         });
 });
+
+// Convert Date format from YYYY-MM-DD to mmm-DD
+function formatDate(inputDate) {
+    const monthNames = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+        "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    const parts = inputDate.split("-");
+    const monthIndex = parseInt(parts[1]) - 1;
+    const monthName = monthNames[monthIndex];
+    const day = parts[2].substr(0, 2);
+    return `${monthName}-${day}`;
+}
 
 function clearCanvas() {
     // clear the context and chat
