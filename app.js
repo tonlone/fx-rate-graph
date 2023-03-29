@@ -73,10 +73,10 @@ viewChartButton.addEventListener('click', () => {
     const ccy1 = ccy1Input.value;
     const ccy2 = ccy2Input.value;
 
-    console.log("start date:", startDate);
-    console.log("end date:", endDate);
-    console.log("Ccy1:", ccy1);
-    console.log("Ccy2:", ccy2);
+    //console.log("start date:", startDate);
+    //console.log("end date:", endDate);
+    //console.log("Ccy1:", ccy1);
+    //console.log("Ccy2:", ccy2);
 
     // Call currency API
     const fxAPIUrl = `https://api.freecurrencyapi.com/v1/historical?currencies=${ccy2}&base_currency=${ccy1}&date_from=${startDate}T20%3A00%3A00.000Z&date_to=${endDate}T20%3A00%3A00.000Z`;
@@ -255,16 +255,16 @@ function displayErrorMessage(error) {
 }
 
 function displayCcyURL(ccy1,ccy2) {
-    console.log("ccy1 for map:", ccy1);
+    //console.log("ccy1 for map:", ccy1);
     const ccy1URL = currencyNewsURLMap.get(ccy1);
-    console.log("url for ccy1:", ccy1URL);
+    //console.log("url for ccy1:", ccy1URL);
     ccy1URLEl.innerHTML = "News related to\: " + ccy1 + ":<br/>  <a href=" + ccy1URL + " target=\"_blank\"\>" + ccy1URL + "</a>";
     displayCcy1URL();
 
     if(ccy1 !== ccy2) {
-        console.log("ccy2 for map:", ccy2);
+        //console.log("ccy2 for map:", ccy2);
         const ccy2URL = currencyNewsURLMap.get(ccy2);
-        console.log("url for ccy2:", ccy2URL);
+        //console.log("url for ccy2:", ccy2URL);
         ccy2URLEl.innerHTML = "News related to\: " + ccy2 + ":<br/>  <a href=" + ccy2URL + " target=\"_blank\"\>" + ccy2URL + "</a>";
         displayCcy2URL();
     } else {
