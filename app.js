@@ -1,3 +1,14 @@
+// Create a Map
+const currencyNewsURLMap = new Map([
+    ["USD", "https://tradingeconomics.com/united-states/inflation-cpi"],
+    ["GBP", "https://tradingeconomics.com/united-kingdom/inflation-cpi"],
+    ["CAD", "https://tradingeconomics.com/canada/inflation-cpi"],
+    ["AUD", "https://tradingeconomics.com/australia/inflation-cpi"],
+    ["JPY", "https://tradingeconomics.com/japan/inflation-cpi"],
+    ["CNY", "https://tradingeconomics.com/china/inflation-cpi"],
+    ["HKD", "https://tradingeconomics.com/hong-kong/inflation-cpi"]
+]);
+
 window.addEventListener('load', ()=>{
     // Get the current year and format it as a string in YYYY format
     const currentYear = new Date().getFullYear();
@@ -23,19 +34,24 @@ window.addEventListener('load', ()=>{
 
 const swapButton = document.getElementById('swap-button');
 swapButton.addEventListener('click', () => {
-    const baseCcyInput = document.getElementById('base-ccy');
-    const symbolsListInput = document.getElementById('symbols-list');
+    const ccy1 = document.getElementById('ccy1');
+    const ccy2 = document.getElementById('ccy2');
 
-    const baseCcy = baseCcyInput.value;
-    const symbolsList = symbolsListInput.value;
+    const baseCcy = ccy1.value;
+    const symbolsList = ccy2.value;
 
     // Swap the values of the base currency and symbols list
-    baseCcyInput.value = symbolsList;
-    symbolsListInput.value = baseCcy;
+    ccy1.value = symbolsList;
+    ccy2.value = baseCcy;
 });
 
 let chart = null;
 let ctx = null;
+
+let ccy1URLEl = document.getElementById('news-ccy1');
+
+const ccy2URLEl = document.getElementById('news-ccy2');
+
 const errorMessageEl = document.getElementById('error-message');
 
 const viewChartButton = document.getElementById('viewChart-button');
@@ -51,19 +67,19 @@ viewChartButton.addEventListener('click', () => {
     const startDate = startDateInput.value;
     const endDate = endDateInput.value;
 
-    const baseCcyInput = document.getElementById('base-ccy');
-    const symbolsListInput = document.getElementById('symbols-list');
+    const ccy1Input = document.getElementById('ccy1');
+    const ccy2Input = document.getElementById('ccy2');
 
-    const baseCcy = baseCcyInput.value;
-    const symbolsList = symbolsListInput.value;
+    const ccy1 = ccy1Input.value;
+    const ccy2 = ccy2Input.value;
 
     console.log("start date:", startDate);
     console.log("end date:", endDate);
-    console.log("Ccy1:", baseCcy);
-    console.log("Ccy2:", symbolsList);
+    console.log("Ccy1:", ccy1);
+    console.log("Ccy2:", ccy2);
 
     // Call currency API
-    const fxAPIUrl = `https://api.freecurrencyapi.com/v1/historical?currencies=${symbolsList}&base_currency=${baseCcy}&date_from=${startDate}T20%3A00%3A00.000Z&date_to=${endDate}T20%3A00%3A00.000Z`;
+    const fxAPIUrl = `https://api.freecurrencyapi.com/v1/historical?currencies=${ccy2}&base_currency=${ccy1}&date_from=${startDate}T20%3A00%3A00.000Z&date_to=${endDate}T20%3A00%3A00.000Z`;
     //console.log(fxAPIUrl);
 
     // display the loading message when the viewChart Button is clicked to notify user
@@ -88,7 +104,7 @@ viewChartButton.addEventListener('click', () => {
                 labels: [], // An empty array for now
                 datasets: [
                     {
-                        label: `${baseCcy} to ${symbolsList}`,
+                        label: `${ccy1} to ${ccy2}`,
                         data: [],
                         // point
                         pointBackgroundColor: 'green',
@@ -166,17 +182,18 @@ viewChartButton.addEventListener('click', () => {
             for (let date in fxData.data) {
                 // console.log("date:", date);
                 // console.log("fxData.data[date]:", fxData.data[date]);
-                // console.log("symbolsList:",symbolsList)
-                // console.log("fxData.data[date][symbolsList]:", fxData.data[date][symbolsList]);
+                // console.log("ccy2:",ccy2)
+                // console.log("fxData.data[date][ccy2]:", fxData.sy[date][ccy2]);
                 //data.labels.push(date.slice(-5)); // only push MM-DD into the labels and data, drop YYYY from the beginning
                 data.labels.push(formatDate(date));
                 data.datasets[0].data.push({
                     //x: date.slice(-5),
                     x: formatDate(date),
-                    y: fxData.data[date][symbolsList]
+                    y: fxData.data[date][ccy2]
                 });
             }
 
+            displayCcyURL(ccy1,ccy2);
             chart.update(); // update the chart
             hideErrorMessage(); // hide the errorMessageElement
         })
@@ -185,6 +202,8 @@ viewChartButton.addEventListener('click', () => {
             displayErrorMessage(error);
             // clear the context and chart
             clearCanvas();
+            hideCcy1URL();
+            hideCcy2URL();
         })
         .finally(() => {
             // hide the loading message
@@ -233,4 +252,37 @@ function hideErrorMessage() {
 function displayErrorMessage(error) {
     errorMessageEl.textContent = error;
     errorMessageEl.style.display = 'block';
+}
+
+function displayCcyURL(ccy1,ccy2) {
+    console.log("ccy1 for map:", ccy1);
+    const ccy1URL = currencyNewsURLMap.get(ccy1);
+    console.log("url for ccy1:", ccy1URL);
+    ccy1URLEl.innerHTML = "News related to\: " + ccy1 + ":<br/>  <a href=" + ccy1URL + " target=\"_blank\"\>" + ccy1URL + "</a>";
+    displayCcy1URL();
+
+    if(ccy1 !== ccy2) {
+        console.log("ccy2 for map:", ccy2);
+        const ccy2URL = currencyNewsURLMap.get(ccy2);
+        console.log("url for ccy2:", ccy2URL);
+        ccy2URLEl.innerHTML = "News related to\: " + ccy2 + ":<br/>  <a href=" + ccy2URL + " target=\"_blank\"\>" + ccy2URL + "</a>";
+        displayCcy2URL();
+    } else {
+        hideCcy2URL();
+    }
+}
+
+function displayCcy1URL() {
+    ccy1URLEl.style.display = 'block';
+}
+
+function displayCcy2URL() {
+    ccy2URLEl.style.display = 'block';
+}
+function hideCcy1URL() {
+    ccy1URLEl.style.display = 'none';
+}
+
+function hideCcy2URL() {
+    ccy2URLEl.style.display = 'none';
 }

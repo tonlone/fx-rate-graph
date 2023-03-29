@@ -13,8 +13,8 @@
 <input type="date" id="end-date" name="end-date" style="font-size: 10px;">
 <br>
 <br>
-<label for="base-ccy">From:</label>
-<select id="base-ccy" name="base-ccy" style="font-size: 10px;">
+<label for="ccy1">From:</label>
+<select id="ccy1" name="ccy1" style="font-size: 10px;">
     <option value="CAD">CAD - Canadian Dollar</option>
     <option value="USD">USD - US Dollar</option>
     <option value="GBP">GBP - British Pound</option>
@@ -24,8 +24,8 @@
     <option value="JPY">JPY - Japanese Yen</option>
 </select>
 <button id="swap-button" style="font-size: 10px;"><=></button>
-<label for="symbols-list">To:</label>
-<select id="symbols-list" name="symbols-list" style="font-size: 10px;">
+<label for="ccy2">To:</label>
+<select id="ccy2" name="ccy2" style="font-size: 10px;">
     <option value="HKD">HKD - Hong Kong Dollar</option>
     <option value="CAD">CAD - Canadian Dollar</option>
     <option value="USD">USD - US Dollar</option>
@@ -39,6 +39,12 @@
 <br>
 <div id="loading" style="display:none;">Loading...</div>
 <div id="error-message" style="display: none; color: darkblue"></div>
+<br>
+<div id="news-ccy1" style="display: none; color: black"></div>
+<br>
+<div id="news-ccy2" style="display: none; color: black"></div>
+<br>
+<br>
 <canvas id="myChart"></canvas>
 <script src="./app.js"></script>
 </body>
