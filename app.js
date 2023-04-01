@@ -290,7 +290,6 @@ function displayCompareDiv(ccy1, ccy2) {
 
     const compareDiv2 = document.getElementById("compare-ccy2-div");
     if(ccy1 !== ccy2) {
-        const compareDiv2 = document.getElementById("compare-ccy2-div");
         compareDiv2.style.display = 'block';
     } else {
         compareDiv2.style.display = 'none';
