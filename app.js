@@ -203,9 +203,9 @@ viewChartButton.addEventListener('click', () => {
                 });
             }
 
-            displayCcyURL(ccy1,ccy2);
-            setCompareURLCcy1(ccy1,ccy2);
-            displayCompareDiv();
+            displayCcyURL(ccy1, ccy2);
+            setCompareURLCcy1(ccy1, ccy2);
+            displayCompareDiv(ccy1, ccy2);
             chart.update(); // update the chart
             hideErrorMessage(); // hide the errorMessageElement
         })
@@ -284,11 +284,17 @@ function displayCcyURL(ccy1,ccy2) {
     }
 }
 
-function displayCompareDiv() {
+function displayCompareDiv(ccy1, ccy2) {
     const compareDiv1 = document.getElementById("compare-ccy1-div");
     compareDiv1.style.display = 'block';
+
     const compareDiv2 = document.getElementById("compare-ccy2-div");
-    compareDiv2.style.display = 'block';
+    if(ccy1 !== ccy2) {
+        const compareDiv2 = document.getElementById("compare-ccy2-div");
+        compareDiv2.style.display = 'block';
+    } else {
+        compareDiv2.style.display = 'none';
+    }
 }
 
 function displayCcy1URL() {
