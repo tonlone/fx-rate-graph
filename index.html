@@ -47,13 +47,20 @@
 <br>
 <canvas id="myChart"></canvas>
 
-<br>
-<input type="checkbox" id="compare-checkbox-ccy1" onclick="toggleCompDivCcy1()" > Show Inflation Rate vs Interest Rate - Ccy1
-<iframe id="compare-ccy1" style="display:none;" src='' height='300' width='600'  frameborder='0' scrolling='no'></iframe><br />
+<div id="compare-ccy1-div" style="display:none;">
+    <br>
+    <input type="checkbox" id="compare-ccy1-checkbox" onclick="toggleCompDivCcy1()"> Show Inflation Rate vs Interest Rate - Ccy1
+    <br>
+    <iframe id="compare-ccy1" src='' style="display:none;" height='300' width='600' frameborder='0' scrolling='no'></iframe>
+</div>
 
-<br>
-<input type="checkbox" id="compare-checkbox-ccy2" onclick="toggleCompDivCcy2()" > Show Inflation Rate vs Interest Rate - Ccy2
-<iframe id="compare-ccy2" style="display:none;"  src='' height='300' width='600'  frameborder='0' scrolling='no'></iframe><br />
+<div id="compare-ccy2-div" style="display:none;">
+    <br>
+    <input type="checkbox" id="compare-ccy2-checkbox" onclick="toggleCompDivCcy2()"> Show Inflation Rate vs Interest Rate - Ccy1
+    <br>
+    <iframe id="compare-ccy2" src='' style="display:none;" height='300' width='600' frameborder='0' scrolling='no'></iframe>
+</div>
+
 <script src="./app.js"></script>
 </body>
 </html>

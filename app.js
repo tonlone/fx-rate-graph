@@ -205,6 +205,7 @@ viewChartButton.addEventListener('click', () => {
 
             displayCcyURL(ccy1,ccy2);
             setCompareURLCcy1(ccy1,ccy2);
+            displayCompareDiv();
             chart.update(); // update the chart
             hideErrorMessage(); // hide the errorMessageElement
         })
@@ -283,6 +284,13 @@ function displayCcyURL(ccy1,ccy2) {
     }
 }
 
+function displayCompareDiv() {
+    const compareDiv1 = document.getElementById("compare-ccy1-div");
+    compareDiv1.style.display = 'block';
+    const compareDiv2 = document.getElementById("compare-ccy2-div");
+    compareDiv2.style.display = 'block';
+}
+
 function displayCcy1URL() {
     ccy1URLEl.style.display = 'block';
 }
@@ -299,30 +307,30 @@ function hideCcy2URL() {
 }
 
 function setCompareURLCcy1(ccy1,ccy2) {
-    const compareDiv1 = document.getElementById("compare-ccy1");
-    compareDiv1.src = currencyCPIVsInterestrateURLMap.get(ccy1);
-    const compareDiv2 = document.getElementById("compare-ccy2");
-    compareDiv2.src = currencyCPIVsInterestrateURLMap.get(ccy2);
+    const compareCcy1Frame = document.getElementById("compare-ccy1");
+    compareCcy1Frame.src = currencyCPIVsInterestrateURLMap.get(ccy1);
+    const compareCcy2Frame = document.getElementById("compare-ccy2");
+    compareCcy2Frame.src = currencyCPIVsInterestrateURLMap.get(ccy2);
 }
 
 function toggleCompDivCcy1() {
-    const checkbox = document.getElementById("compare-checkbox-ccy1");
-    const compareDiv = document.getElementById("compare-ccy1");
+    const checkbox = document.getElementById("compare-ccy1-checkbox");
+    const compareCcyFrame = document.getElementById("compare-ccy1");
 
     if (checkbox.checked) {
-        compareDiv.style.display = "block";
+        compareCcyFrame.style.display = "block";
     } else {
-        compareDiv.style.display = "none";
+        compareCcyFrame.style.display = "none";
     }
 }
 
 function toggleCompDivCcy2() {
-    const checkbox = document.getElementById("compare-checkbox-ccy2");
-    const compareDiv = document.getElementById("compare-ccy2");
+    const checkbox = document.getElementById("compare-ccy2-checkbox");
+    const compareCcyFrame = document.getElementById("compare-ccy2");
 
     if (checkbox.checked) {
-        compareDiv.style.display = "block";
+        compareCcyFrame.style.display = "block";
     } else {
-        compareDiv.style.display = "none";
+        compareCcyFrame.style.display = "none";
     }
 }
