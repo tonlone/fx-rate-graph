@@ -1,4 +1,4 @@
-// Create a Map
+// Create a Map for inflation
 const currencyNewsURLMap = new Map([
     ["USD", "https://tradingeconomics.com/united-states/inflation-cpi"],
     ["GBP", "https://tradingeconomics.com/united-kingdom/inflation-cpi"],
@@ -7,6 +7,16 @@ const currencyNewsURLMap = new Map([
     ["JPY", "https://tradingeconomics.com/japan/inflation-cpi"],
     ["CNY", "https://tradingeconomics.com/china/inflation-cpi"],
     ["HKD", "https://tradingeconomics.com/hong-kong/inflation-cpi"]
+]);
+
+const currencyCPIVsInterestrateURLMap = new Map([
+    ["USD", "https://d3fy651gv2fhd3.cloudfront.net/embed/?s=cpi+yoy&v=202303141300V20220312&title=false&url2=/united-states/interest-rate&h=300&w=600"],
+    ["GBP", "https://d3fy651gv2fhd3.cloudfront.net/embed/?s=ukrpcjyr&v=202303220735V20220312&title=false&url2=/united-kingdom/interest-rate&h=300&w=600"],
+    ["CAD", "https://d3fy651gv2fhd3.cloudfront.net/embed/?s=cacpiyoy&v=202303211408V20220312&title=false&url2=/canada/interest-rate&h=300&w=600"],
+    ["AUD", "https://d3fy651gv2fhd3.cloudfront.net/embed/?s=aucpiyoy&v=202301251615V20220312&title=false&url2=/australia/interest-rate&h=300&w=600"],
+    ["JPY", "https://d3fy651gv2fhd3.cloudfront.net/embed/?s=jncpiyoy&v=202303240124V20220312&title=false&url2=/japan/interest-rate&h=300&w=600"],
+    ["CNY", "https://d3fy651gv2fhd3.cloudfront.net/embed/?s=cncpiyoy&v=202303091745V20220312&title=false&url2=/china/interest-rate&h=300&w=600"],
+    ["HKD", "https://d3fy651gv2fhd3.cloudfront.net/embed/?s=hkcpiy&v=202303230850V20220312&title=false&url2=/hong-kong/interest-rate&h=300&w=600"]
 ]);
 
 window.addEventListener('load', ()=>{
@@ -194,6 +204,7 @@ viewChartButton.addEventListener('click', () => {
             }
 
             displayCcyURL(ccy1,ccy2);
+            setCompareURLCcy1(ccy1,ccy2);
             chart.update(); // update the chart
             hideErrorMessage(); // hide the errorMessageElement
         })
@@ -285,4 +296,33 @@ function hideCcy1URL() {
 
 function hideCcy2URL() {
     ccy2URLEl.style.display = 'none';
+}
+
+function setCompareURLCcy1(ccy1,ccy2) {
+    const compareDiv1 = document.getElementById("compare-ccy1");
+    compareDiv1.src = currencyCPIVsInterestrateURLMap.get(ccy1);
+    const compareDiv2 = document.getElementById("compare-ccy2");
+    compareDiv2.src = currencyCPIVsInterestrateURLMap.get(ccy2);
+}
+
+function toggleCompDivCcy1() {
+    const checkbox = document.getElementById("compare-checkbox-ccy1");
+    const compareDiv = document.getElementById("compare-ccy1");
+
+    if (checkbox.checked) {
+        compareDiv.style.display = "block";
+    } else {
+        compareDiv.style.display = "none";
+    }
+}
+
+function toggleCompDivCcy2() {
+    const checkbox = document.getElementById("compare-checkbox-ccy2");
+    const compareDiv = document.getElementById("compare-ccy2");
+
+    if (checkbox.checked) {
+        compareDiv.style.display = "block";
+    } else {
+        compareDiv.style.display = "none";
+    }
 }
