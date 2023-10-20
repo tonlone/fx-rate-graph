@@ -102,9 +102,6 @@ viewChartButton.addEventListener('click', () => {
     // clear the context and chart before display the graph
     clearCanvas();
 
-
-    console.log("hello")
-
     // fetch exchange rate from API
     fetch(fxAPIUrl, {
         method : "GET",
