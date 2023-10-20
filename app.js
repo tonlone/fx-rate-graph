@@ -1,3 +1,4 @@
+
 // Create a Map for inflation
 const currencyNewsURLMap = new Map([
     ["USD", "https://tradingeconomics.com/united-states/inflation-cpi"],
@@ -89,8 +90,7 @@ viewChartButton.addEventListener('click', () => {
     //console.log("Ccy2:", ccy2);
 
     // Call currency API
-    //const fxAPIUrl = `https://api.freecurrencyapi.com/v1/historical?currencies=${ccy2}&base_currency=${ccy1}&date_from=${startDate}T20%3A00%3A00.000Z&date_to=${endDate}T20%3A00%3A00.000Z`;
-    const fxAPIUrl = `https://api.freecurrencyapi.com/v3/range?currencies=${ccy2}&base_currency=${ccy1}&date_from=${startDate}T20%3A00%3A00.000Z&date_to=${endDate}T20%3A00%3A00.000Z`;
+    const fxAPIUrl = `https://api.freecurrencyapi.com/v1/historical?currencies=${ccy2}&base_currency=${ccy1}&date_from=${startDate}T20%3A00%3A00.000Z&date_to=${endDate}T20%3A00%3A00.000Z`;    
     //console.log(fxAPIUrl);
 
     // display the loading message when the viewChart Button is clicked to notify user
@@ -101,6 +101,9 @@ viewChartButton.addEventListener('click', () => {
 
     // clear the context and chart before display the graph
     clearCanvas();
+
+
+    console.log("hello")
 
     // fetch exchange rate from API
     fetch(fxAPIUrl, {
